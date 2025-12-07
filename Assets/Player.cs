@@ -9,9 +9,24 @@ public class Player : MonoBehaviour
     public bool IsAlive = true;
     [SerializeField] private int score = 0;
 
+    public int currentHp = 100;
+
     void Update()
     {
         Rb.linearVelocity = new Vector2(Input.GetAxis("Horizontal"), Rb.linearVelocityY);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            currentHp -= collision.gameObject.GetComponent<Damage>().GetDamage();
+            if (currentHp <= 0)
+            {
+                IsAlive = false;
+                Debug.Log($"{PlayerName} has died.");
+            }
+        }
     }
 
 }
