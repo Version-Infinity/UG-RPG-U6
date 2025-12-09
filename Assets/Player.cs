@@ -54,7 +54,10 @@ public class Player : MonoBehaviour
 
     private void HandleAnimation()
     { 
-        animator.SetBool("isMoving", xInput != 0);
+        //Set the paramater values for the animator component
+        animator.SetBool("isGrounded", isGrounded);
+        animator.SetFloat("yVelocity", body.linearVelocityY);
+        animator.SetFloat("xVelocity", body.linearVelocityX);
     }
 
     private void HandleMovement()
