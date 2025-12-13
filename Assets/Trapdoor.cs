@@ -4,7 +4,7 @@ using UnityEngine;
 public class Trapdoor : MonoBehaviour
 {
     [SerializeField] private bool isOpen = true;
-    [SerializeField] private int framesToStayOpen = 10;
+    [SerializeField] private int durationToStayOpen = 30;
     private int openFrames = 0;
     private Collider2D trapdoorCollider;
 
@@ -13,23 +13,17 @@ public class Trapdoor : MonoBehaviour
         trapdoorCollider = GetComponent<Collider2D>();
         trapdoorCollider.enabled = !isOpen;
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
        if (isOpen)
             CheckTrapdoor();
-
     }
 
     private void CheckTrapdoor()
     {
-        if (isOpen && ++openFrames >= framesToStayOpen)
+        if (isOpen && ++openFrames >= durationToStayOpen)
         {
             trapdoorCollider.enabled = true;
             isOpen = false;

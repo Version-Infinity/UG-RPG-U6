@@ -572,7 +572,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trapdoor
   isOpen: 1
-  durationToStayOpen: 10
+  framesToStayOpen: 30
 --- !u!1 &935430294
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +722,6 @@ GameObject:
   - component: {fileID: 966240740}
   - component: {fileID: 966240741}
   - component: {fileID: 966240742}
-  - component: {fileID: 966240743}
   m_Layer: 0
   m_Name: Animator
   m_TagString: Untagged
@@ -826,18 +825,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &966240743
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 966240739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76289c7de7e21084b8a9ea21634e349d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
 --- !u!1 &1699091218
 GameObject:
   m_ObjectHideFlags: 0
@@ -917,13 +904,12 @@ MonoBehaviour:
   currentDirection: 0
   instantAcceleration: 1
   moveSpeed: 8
-  introJump: 1
   jumpForce: 16
+  introJump: 1
   groundCheckDistance: 1.24
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
-  canAttack: 1
 --- !u!70 &1699091224
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
