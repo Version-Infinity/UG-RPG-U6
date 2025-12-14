@@ -27,5 +27,7 @@ namespace Assets
             player.SetMovementAndJump(true);
         }
 
+        public void DamageEnemies() => player.DamageEnimies();
+
     }
 }

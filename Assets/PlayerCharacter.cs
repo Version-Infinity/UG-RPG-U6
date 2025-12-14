@@ -10,6 +10,11 @@ namespace Assets
         public Rigidbody2D body;
         public Animator animator;
 
+        [Header("Attack Details")]
+        [SerializeField] private float attackRadius;
+        [SerializeField] private Transform attackPoint;
+        [SerializeField] private LayerMask whatIsEnemy;
+
         [Header("Orientation Settings")]
         [SerializeField] private CharacterDirection currentDirection = CharacterDirection.Right;
         private bool rotatedLeft = false;
@@ -61,6 +66,17 @@ namespace Assets
             HandleAnimation();
             HandleOrientation();
             customActionLoop.ProcessActions();
+        }
+
+        public void DamageEnimies()
+        {
+            var enemyColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, whatIsEnemy);
+            Debug.Log($"Damaging {enemyColliders.Length} enemies");
+
+            foreach (var enemyCollider in enemyColliders)
+            { 
+                enemyCollider.GetComponent<Enemy>()?.TakeDamage();
+            }
         }
 
         public void SetMovementAndJump(bool state)
@@ -170,6 +186,7 @@ namespace Assets
         {
             //Draw a design-time only line to visualize the ground detection ray
             Gizmos.DrawLine(transform.position, transform.position + new Vector3(0, -groundCheckDistance));
+            Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
         }
     }
 }
