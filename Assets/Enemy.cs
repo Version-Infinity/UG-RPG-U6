@@ -5,25 +5,25 @@ public class Enemy : MonoBehaviour
     [SerializeField] protected float MoveSpeed = 2.0f;
     [SerializeField] protected string Name = "Enemy";
     [SerializeField] protected int Health = 100;
-    
 
-    private void Update()
+
+    protected void Update()
     {
         MoveAround();
         Attack();
-    }   
+    }
 
-    private void MoveAround()
+    protected void MoveAround()
     {
     }
 
-    private void Attack()
+    protected virtual void Attack()
     {
         // Placeholder for attack logic
         Debug.Log($"{Name} attacks!");
     }
 
-    public void TakeDamage(int damage)
+    public virtual void TakeDamage(int damage)
     {
         Health -= damage;
         Debug.Log($"{Name} took {damage} damage. Remaining health: {Health}");
@@ -33,8 +33,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Die()
+    protected virtual void Die()
     {
-     
+        Debug.Log($"{Name} has died.");
+        Destroy(gameObject);
     }
 }
